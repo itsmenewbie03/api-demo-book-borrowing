@@ -8,6 +8,10 @@ app.get("/", (_, res) => {
 });
 
 app.get("/borrow_data", (req, res) => {
+    const { secret_key } = req.headers;
+    if(!secret_key || secret_key != "server_sige_na"){
+        return res.status(401).send("Are you lost baby girl?")
+    }
     return res.json(get_data());
 });
 
